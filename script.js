@@ -23,7 +23,7 @@ fetch('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1', {
                         class="card-img-top" alt="${i.original_title}">
                     <div class="card-body movie-info">
                         <div class="movie-title">${i.original_title}</div>
-                        <div class="movie-date">${i.release_date}</div>
+                        <div class="movie-date">${formatDate(i.release_date)}</div>
                     </div>
                 </div>
             </div>`
@@ -69,4 +69,11 @@ fetch('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1', {
     })
     .catch(function (error) {
         console.error('Error:', error);
+        
     });
+
+    function formatDate(dateString) {
+        const [year, month, day] = dateString.split('-');
+        return `${day}/${month}/${year}`;
+    }
+
